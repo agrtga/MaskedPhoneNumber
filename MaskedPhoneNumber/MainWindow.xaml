@@ -1,0 +1,57 @@
+﻿<Window x:Class="MaskedPhoneNumber.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MaskedPhoneNumber"
+        xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+        mc:Ignorable="d"
+        Title="Masked Phone Number" Height="120" Width="300" ResizeMode="NoResize">
+    <Window.Resources>
+        <ResourceDictionary>
+            <Style TargetType="{x:Type TextBlock}">
+                <Setter Property="Margin" Value="0 0 4 8" />
+            </Style>
+            <Style TargetType="{x:Type TextBox}">
+                <Setter Property="Margin" Value="0 0 0 8" />
+                <Setter Property="HorizontalAlignment" Value="Left" />
+                <Setter Property="MinWidth" Value="40" />
+            </Style>
+            <Style TargetType="{x:Type telerik:RadMaskedTextInput}">
+                <Setter Property="Margin" Value="0 0 0 8" />
+                <Setter Property="MinWidth" Value="80" />
+                <Setter Property="Mask" Value="" />
+                <Setter Property="InputBehavior" Value="Replace" />
+                <Setter Property="IsClearButtonVisible" Value="True" />
+                <Setter Property="TextMode" Value="MaskedText" />
+                <Setter Property="SelectionOnFocus" Value="SelectAll" />
+                <Setter Property="Value" Value="{Binding NationalNumber, Mode=TwoWay}" />
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding CountryCode, Mode=OneWay}" Value="1">
+                        <Setter Property="Mask" Value="(d3) d3-d4" />
+                        <Setter Property="Value" Value="{Binding NationalNumber, Mode=TwoWay, Converter={local:MaskedPhoneNumberConverter}, ConverterParameter=1}" />
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding CountryCode, Mode=OneWay}" Value="49">
+                        <Setter Property="Mask" Value="(d2) d3-d5" />
+                        <Setter Property="Value" Value="{Binding NationalNumber, Mode=TwoWay, Converter={local:MaskedPhoneNumberConverter}, ConverterParameter=49}" />
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid Margin="8">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <TextBlock Text="Country Code" />
+        <TextBox Grid.Column="1" HorizontalAlignment="Left" MinWidth="40"
+                 Text="{Binding CountryCode, Mode=TwoWay}" />
+        <TextBlock Grid.Row="1" Text="Phone Number" />
+        <telerik:RadMaskedTextInput Grid.Row="1" Grid.Column="1" />
+    </Grid>
+</Window>
