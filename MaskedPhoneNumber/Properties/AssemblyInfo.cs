@@ -1,18 +1,16 @@
 ﻿using System.Reflection;
-using System.Resources;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Windows;
 
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("MaskedPhoneNumber")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Masked Phone Number")]
+[assembly: AssemblyDescription("Example of masking a phone number by country code")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("MaskedPhoneNumber")]
-[assembly: AssemblyCopyright("Copyright ©  2017")]
+[assembly: AssemblyCompany("Anthony Trudeau")]
+[assembly: AssemblyProduct("")]
+[assembly: AssemblyCopyright("Copyright © 2017, Anthony Trudeau")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

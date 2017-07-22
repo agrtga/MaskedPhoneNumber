@@ -27,6 +27,7 @@
                 <Setter Property="SelectionOnFocus" Value="SelectAll" />
                 <Setter Property="Value" Value="{Binding NationalNumber, Mode=TwoWay}" />
                 <Style.Triggers>
+                    <!-- A trigger is needed for each country code/mask to be supported -->
                     <DataTrigger Binding="{Binding CountryCode, Mode=OneWay}" Value="1">
                         <Setter Property="Mask" Value="(d3) d3-d4" />
                         <Setter Property="Value" Value="{Binding NationalNumber, Mode=TwoWay, Converter={local:MaskedPhoneNumberConverter}, ConverterParameter=1}" />
